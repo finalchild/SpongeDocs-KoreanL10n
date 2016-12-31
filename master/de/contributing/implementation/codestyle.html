@@ -1,0 +1,582 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+     <title>Code Formatierung &mdash; Sponge 5.0.0 Dokumentation</title>
+    
+  <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sponge.css" type="text/css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Roboto:400italic,700italic,700,400|Montserrat:400,700" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tomorrow.css" type="text/css" />
+  <link id="syntax-highlighting-ref" rel="stylesheet" href="../../_static/tomorrow_night.css" type="text/css" />
+      
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    '../../',
+      VERSION:     '5.0.0',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/store.min.js"></script>
+    <script type="text/javascript" src="../../_static/lights.js"></script>
+      <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+        <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
+        <link rel="search" title="Suche" href="../../search.html" />
+        <link rel="top" title="Sponge 5.0.0 Dokumentation" href="../../index.html" />
+        <link rel="up" title="Developing Sponge" href="index.html" />
+        <link rel="next" title="Git Workflow for API and Implementations" href="git-implementation.html" />
+        <link rel="prev" title="Developing Sponge" href="index.html" />
+    
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-59476017-2', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+    
+  <link rel="alternate" hreflang="da" href="/master/da/">
+  <link rel="alternate" hreflang="de" href="/master/de/">
+  <link rel="alternate" hreflang="en-GB" href="/master/en-GB/">
+  <link rel="alternate" hreflang="en-PT" href="/master/en-PT/">
+  <link rel="alternate" hreflang="en" href="/master/en/">
+  <link rel="alternate" hreflang="es-ES" href="/master/es-ES/">
+  <link rel="alternate" hreflang="fi" href="/master/fi/">
+  <link rel="alternate" hreflang="fr" href="/master/fr/">
+  <link rel="alternate" hreflang="it" href="/master/it/">
+  <link rel="alternate" hreflang="ja" href="/master/ja/">
+  <link rel="alternate" hreflang="ko" href="/master/ko/">
+  <link rel="alternate" hreflang="lt" href="/master/lt/">
+  <link rel="alternate" hreflang="nb" href="/master/nb/">
+  <link rel="alternate" hreflang="nl" href="/master/nl/">
+  <link rel="alternate" hreflang="pl" href="/master/pl/">
+  <link rel="alternate" hreflang="pt-BR" href="/master/pt-BR/">
+  <link rel="alternate" hreflang="pt-PT" href="/master/pt-PT/">
+  <link rel="alternate" hreflang="ru" href="/master/ru/">
+  <link rel="alternate" hreflang="uk" href="/master/uk/">
+  <link rel="alternate" hreflang="zh-CN" href="/master/zh-CN/">
+  <link rel="alternate" hreflang="zh-TW" href="/master/zh-TW/">
+  <link rel="alternate" hreflang="x-default" href="/"> 
+  </head>
+  <body role="document" id="top">
+    <div class="topbar">
+  <div role="navigation" aria-label="related navigation">
+    <div class="sp-logo-container sp-not-mobileview sp-mobileview">
+      <a class="sp-logo-link" data-auto-route="true" href="/">
+        <img height="40px" id="site-logo" class="logo-big" alt="" src="https://www.spongepowered.org/assets/img/icons/spongie-mark.svg">
+        <span id="sp-site-title">Sponge</span>
+      </a>
+      <div class="sp-logo-bg"></div>
+      <div class="sp-logo-chevron"><i class="fa fa-fw fa-chevron-down"></i></div>
+      <div class="sp-logo-menu sp-skip-handler">
+        <ul class="sp-logo-dropdown" id="ddleft">
+          <a href="https://www.spongepowered.org"><li><i class="fa-fw fa fa-home"></i>Homepage</li></a>
+          <a href="https://forums.spongepowered.org"><li><i class="fa-fw fa fa-comments"></i>Forums</li></a>
+          <a href="https://github.com/SpongePowered"><li><i class="fa-fw fa fa-code"></i>Code</li></a>
+          <a class="sp-forums-home" href="https://docs.spongepowered.org"><li class="active"><i class="fa-fw fa fa-book"></i>Docs</li></a>
+          <a href="https://jd.spongepowered.org"><li><i class="fa-fw fa fa-graduation-cap"></i>Javadocs</li></a>
+          <a href="https://forums.spongepowered.org/c/plugins/plugin-releases"><li><i class="fa-fw fa fa-plug"></i>Plugins</li></a>
+          <a href="https://www.spongepowered.org/downloads"><li><i class="fa-fw fa fa-download"></i>Downloads</li></a>
+          <a href="https://www.spongepowered.org/chat"><li><i class="fa-fw fa fa-comment"></i>Chat</li></a>
+        </ul>
+      </div>
+    </div>
+    <div class="menu-right">
+      <div><i class="fa fa-fw fa-globe"></i></div>
+        <ul class="dropdown" id="ddlang">
+          <li><a href="/master/da/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/da.png" alt="Flag for Danish"/></a></li>
+          <li><a href="/master/de/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/de.png" alt="Flag for German"/></a></li>
+          <li><a href="/master/en-GB/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/en-GB.png" alt="Flag for English, United Kingdom"/></a></li>
+          <li><a href="/master/en-PT/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/en-PT.png" alt="Flag for Pirate English"/></a></li>
+          <li><a href="/master/en/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/en.png" alt="Flag for English"/></a></li>
+          <li><a href="/master/es-ES/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/es-ES.png" alt="Flag for Spanish"/></a></li>
+          <li><a href="/master/fi/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/fi.png" alt="Flag for Finnish"/></a></li>
+          <li><a href="/master/fr/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/fr.png" alt="Flag for French"/></a></li>
+          <li><a href="/master/it/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/it.png" alt="Flag for Italian"/></a></li>
+          <li><a href="/master/ja/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/ja.png" alt="Flag for Japanese"/></a></li>
+          <li><a href="/master/ko/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/ko.png" alt="Flag for Korean"/></a></li>
+          <li><a href="/master/lt/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/lt.png" alt="Flag for Lithuanian"/></a></li>
+          <li><a href="/master/nb/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/nb.png" alt="Flag for Norwegian Bokmal"/></a></li>
+          <li><a href="/master/nl/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/nl.png" alt="Flag for Dutch"/></a></li>
+          <li><a href="/master/pl/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/pl.png" alt="Flag for Polish"/></a></li>
+          <li><a href="/master/pt-BR/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/pt-BR.png" alt="Flag for Portuguese, Brazilian"/></a></li>
+          <li><a href="/master/pt-PT/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/pt-PT.png" alt="Flag for Portuguese"/></a></li>
+          <li><a href="/master/ru/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/ru.png" alt="Flag for Russian"/></a></li>
+          <li><a href="/master/uk/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/uk.png" alt="Flag for Ukrainian"/></a></li>
+          <li><a href="/master/zh-CN/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/zh-CN.png" alt="Flag for Chinese Simplified"/></a></li>
+          <li><a href="/master/zh-TW/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/zh-TW.png" alt="Flag for Chinese Traditional"/></a></li>
+        </ul>
+    </div>
+    <div class="menu-right">
+      <div><i class="fa fa-fw fa-tag"></i><a>5.0.0</a></div>
+        <ul class="dropdown" id="ddvers">
+          <li><a href="/master/en/"><i class="fa fa-fw fa-tag"></i> latest</a></li>
+          <li><a href="/4.1.0/en/"><i class="fa fa-fw fa-tag"></i> 4.1.0</a></li>
+          <li><a href="/3.1.0/en/"><i class="fa fa-fw fa-tag"></i> 3.1.0</a></li>
+        </ul>
+    </div>
+    <div class="menu-right">
+      <div title="Toggle syntax highlighting between light and dark" class="lights">
+        <i class="fa fa-fw fa-lightbulb-o"></i>
+      </div>
+    </div>
+    <div>
+      <ul class="controls">
+        <li>|</li>
+        
+        <li><a href="git-implementation.html" title="Next Page"><i class="fa fa-fw fa-chevron-right"></i></a></li>
+        
+        <li><a href="#top" title="To the top"><i class="fa fa-fw fa-chevron-up"></i></a></li>
+        <li><a href="../../index.html" title="Home"><i class="fa fa-fw fa-home"></i></a></li>
+        
+        <li><a href="index.html" title="Previous Page"><i class="fa fa-fw fa-chevron-left"></i></a></li>
+        
+        <li>|</li>
+        
+          <li><a href="https://github.com/SpongePowered/SpongeDocs/blob/master/source/contributing/implementation/codestyle.rst" title="Edit on GitHub"><i class="fa fa-fw fa-github"></i></a></li>
+        
+      </ul>
+    </div>
+    <h3>Navigation</h3>
+  </div>
+    </div>
+    <div class="container">
+
+      <div class="breadcrumbs">
+        <ul>
+        <li><a href="../../index.html">Sponge 5.0.0 Dokumentation</a><i class="fa fa-fw fa-chevron-right"></i></li>
+        <li><a href="../index.html" >Zu Sponge beitragen</a><i class="fa fa-fw fa-chevron-right"></i></li>
+        <li><a href="index.html" accesskey="U">Developing Sponge</a><i class="fa fa-fw fa-chevron-right"></i></li>
+        </ul>
+      </div> 
+    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+    <form class="search" action="../../search.html" method="get">
+      <div class="searchbox-inner">
+        <input class="field" type="text" name="q" autocomplete="off" />
+        <button class="submit" type="submit"><i class="fa fa-fw fa-search" aria-hidden="true"></i></button>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </div>
+    </form>
+    <p class="searchtip" style="font-size: 90%"></p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../../index.html">Inhalt</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../server/index.html">Einen Server erstellen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../server/getting-started/index.html">Erste Schritte</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../server/getting-started/jre.html">Java installieren</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server/getting-started/migrating.html">Auf Sponge umsteigen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server/getting-started/implementations/index.html">Auswählen einer Implementierung</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../server/getting-started/implementations/spongeforge.html">SpongeForge installieren</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../server/getting-started/implementations/spongevanilla.html">SpongeVanilla Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../server/getting-started/launch-script.html">Ein Start-Skript erstellen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server/getting-started/port-forward.html">Portweiterleitung</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server/getting-started/bungeecord.html">Sponge mit Bungeecord nutzen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server/getting-started/configuration/index.html">Sponge konfigurieren</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../server/getting-started/configuration/hocon.html">Einführung in HOCON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../server/getting-started/configuration/json.html">JSON Syntax</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../server/getting-started/configuration/sponge-conf.html">global.conf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../server/getting-started/configuration/server-properties.html">server.properties</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../server/management/index.html">Server Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../server/management/whitelist.html">Verwalten der Whitelist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server/management/bans.html">Verwalten von Bans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server/management/permissions.html">Berechtigungen verwalten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server/management/plugins.html">Installieren von Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server/management/exploit-patches.html">Exploit Patches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server/management/performance-tweaks.html">Performance Tweaks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../server/spongineer/index.html">Ein Sponge Experte werden</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../server/spongineer/commands.html">Befehle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server/spongineer/troubleshooting.html">Fehlerbehebung</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server/spongineer/logs.html">Logdateien</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server/spongineer/debugging.html">Debuggen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server/spongineer/bugreport.html">Fehler melden</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preparing/index.html">Vorbereitung für die Entwicklung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../preparing/jdk.html">Installieren des JDKs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../preparing/ide.html">Installieren einer IDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../preparing/text.html">Installation eines Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../preparing/git.html">Git installieren</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../plugin/index.html">Plugins erstellen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/buildsystem.html">Build Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/workspace/index.html">Den Arbeitsbereich einrichten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/workspace/idea.html">IntelliJ IDEA einrichten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/workspace/eclipse.html">Eclipse einrichten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/project/index.html">Das Projekt einrichten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/project/gradle.html">Grable einrichten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/project/maven.html">Maven einrichten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/plugin-identifier.html">Plugin Identifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/plugin-class.html">Main Plugin Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/lifecycle.html">Der Plugin-Lebenszyklus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/injection.html">Dependency Injection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/practices.html">Bewährtes Vorgehen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/optional/index.html">Extras</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/optional/basic.html">Optionals erklärt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/optional/usage.html">Beispiele für die Verwendung</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/logging.html">Loggen und Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/commands/index.html">Befehle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/commands/creating.html">Einen Befehl erstellen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/commands/arguments.html">Das Parsen von Argumenten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/commands/flags.html">Command Flags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/commands/childcommands.html">Untergeordnete Befehle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/commands/service.html">The Command Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/commands/commandcallable.html">Unterste Ebene der Command API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/event/index.html">Ereignisse</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/event/listeners.html">Event Listeners</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/event/causes.html">Event Causes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/event/filters.html">Event Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/event/custom.html">Benutzerdefinierte Ereignisse</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/assets.html">The Asset API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/configuration/index.html">Configuring Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/configuration/loaders.html">Konfigurationsladende Elemente</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/configuration/nodes.html">Nodes konfigurieren</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/configuration/serialization.html">Serializing Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/text/index.html">Text</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/text/text.html">Texte erstellen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/text/representations/index.html">Text Serializers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../plugin/text/representations/formatting-code-legacy.html">Formatting Code &amp; Legacy Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../plugin/text/representations/xml.html">TextXML Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../plugin/text/representations/json.html">JSON Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../plugin/text/representations/configurate.html">Konfiguration-Format</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/text/pagination.html">Der Pagination-Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/text/messagechannels.html">Message Channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/text/templates.html">TextTemplates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/data/index.html">Die Daten API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/data/keys.html">Using Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/data/datamanipulators.html">Daten-Manipulatoren</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/data/transactions.html">Transactions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/data/serialization.html">Serializing Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/blocks/index.html">Blöcke</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/blocks/concepts.html">Konzept</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/blocks/accessing.html">Block-Zugriff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/blocks/modifying.html">Blöcke verändern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/blocks/tileentities.html">Tile Entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/blocks/virtualblock.html">Virtual Block Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/entities/index.html">Entitäten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/entities/spawning.html">Spawnen eines Entitys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/entities/modifying.html">Modifying an Entity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/items/index.html">Items</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/items/usage.html">Basic Item Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/items/creating.html">Ein ItemStack erstellen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/trade-offers.html">Trade-Offers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/effects.html">Effekte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/scheduler.html">Scheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/services.html">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/database.html">Datenbanken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/permissions.html">Rechte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/bans.html">Bans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/bookview.html">Book Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/economy/index.html">Wirtschaft</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/economy/basics.html">Grundlegende Konzepte</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/economy/using.html">Using the Economy API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/economy/practices.html">Economy API Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/economy/implementing.html">Implementing the Economy API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/wgen/index.html">Weltgenerierung</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/wgen/modifiers.html">WorldGeneratorModifiers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../plugin/wgen/customwgen.html">Modifying World Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/manager.html">Plugin-Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/game-profile-manager.html">Game Profile Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/offline-userplayer-data.html">Offline Player Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/debugging.html">Plugins Debuggen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/tab-lists.html">Tab Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/plugin-meta.html">Plugin Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/ray-tracing.html">Ray-Tracing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plugin/tutorials.html">Tutorials</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Zu Sponge beitragen</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../guidelines.html">Richtlinien für Beiträge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howtogit.html">Wie man Git(Hub)t</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Developing Sponge</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Code Formatierung</a></li>
+<li class="toctree-l3"><a class="reference internal" href="git-implementation.html">Git Workflow for API and Implementations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pr.html">Submitting a Pull-Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debugging.html">Sponge in der IDE debuggen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins.html">Mixins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datamanipulator.html">Implementierung des DataManipulators</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../spongedocs.html">SpongeDocs schreiben</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting.html">Portierung von Sponge auf andere Platformen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../versioning.html">Versioning System and Repository Branch Layout</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Über das Sponge Projekt</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about/introduction.html">Einführung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/faq.html">Häufig gestellte Fragen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/structure.html">Die Struktur des Sponge Projekts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/future.html">Zukunftspläne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/license.html">Lizenz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/posting.html">Richtlinien für Forenbeiträge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/rules.html">Regeln für das Forum und den IRC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/staff.html">Mitarbeiter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/glossary.html">Sponge Glossar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/assets.html">Grafiken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about/history.html">Die Geschichte des Sponge-Projekts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloads.html">Download</a></li>
+</ul>
+
+      </div>
+    </div> 
+
+        <div class="document">
+            <div class="documentwrapper">
+              <div class="bodywrapper">
+                <div class="body" role="main">
+                  
+  <div class="section" id="code-style">
+<h1>Code Formatierung<a class="headerlink" href="#code-style" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Wir folgen den &#8220;Google&#8217;s Java Style Guidelines &lt;<a class="reference external" href="https://google.github.io/styleguide/javaguide.html">https://google.github.io/styleguide/javaguide.html</a>&gt;&#8221; mit ein paar Änderungen und Modifikationen, die in diesem Artikel beschrieben werden.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tipp</p>
+<p class="last">Du kannst unsere Code Formatierungsvorlagen für Eclipse oder IntelliJ IDEA benutzen, um den Code durch deine Entwicklungsumgebung(IDE) korrekt Formatieren zu lassen. Unter <a class="reference internal" href="../../preparing/index.html"><span class="doc">Vorbereitung für die Entwicklung</span></a> findest du weitere Informationen.</p>
+</div>
+<ul class="simple">
+<li><p class="first">Zeilenenden</p>
+<ul>
+<li><p class="first">Bei der Benutzung von committing (\n), verwende die UNIX Zeilenende</p>
+<ul>
+<li><p class="first">Windows Benutzer von Git können &#8220;git config &#8211;global core.autocrlf true&#8221; ausführen, um diese automatisch von Git konvertieren zu lassen.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="first">Spaltenbreite</p>
+<ul>
+<li><p class="first">80 für Javadocs</p>
+</li>
+<li><p class="first">150 für Code</p>
+</li>
+<li><p class="first">Zögern Sie nicht dies Anzupassen, wenn es die Lesbarkeit verbessert.</p>
+</li>
+</ul>
+</li>
+<li><p class="first">Einzug</p>
+<ul>
+<li><p class="first">Verwende 4 Leerzeichen zum Einrücken, nicht 2</p>
+</li>
+</ul>
+</li>
+<li><p class="first">Leerzeilen</p>
+<ul>
+<li><p class="first">Erstelle eine Leerzeile vor dem ersten Eintrag einer Klasse, Interface, Enum, usw. (in der Regel nach <code class="docutils literal"><span class="pre">class</span> <span class="pre">Example</span> <span class="pre">{</span></code>) genauso nach dem letzten Eintrag</p>
+</li>
+</ul>
+</li>
+<li><p class="first">Datei Kopf</p>
+<ul>
+<li><p class="first">Der Datei Kopf muss den Lizenztext vom Projekt enthalten. Verwende den <code class="docutils literal"><span class="pre">licenseFormat</span></code> Gradle Befehl um dies automatisch durchführen zu lassen.</p>
+</li>
+</ul>
+</li>
+<li><p class="first">Importiert</p>
+<ul>
+<li><p class="first">Imports müssen in der folgenden Reihenfolge gruppiert werden, wobei die Gruppen durch eine Leerzeile getrennt werden</p>
+<ul>
+<li><p class="first">Statische Imports</p>
+</li>
+<li><p class="first">Alle anderen Imports</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">java</span></code> Imports</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">javax</span></code> Imports</p>
+</li>
+</ul>
+</li>
+<li><p class="first">Dies unterscheidet sich von Googles Stil, bei dem die Imports nicht nach der obersten Gruppe, sondern alle gemeinsam zusammengefasst werden.</p>
+</li>
+</ul>
+</li>
+<li><p class="first">Ausnahmen</p>
+<ul>
+<li><p class="first">Wenn &#8220;Exceptions&#8221; ignoriert werden soll, nenne die Variable &#8220;ignored&#8221;</p>
+</li>
+</ul>
+</li>
+<li><p class="first">Zugriff auf Felder</p>
+<ul>
+<li><p class="first">Befehle registrieren</p>
+</li>
+</ul>
+</li>
+<li>Javadocs<ul>
+<li><p class="first">Verwende kein <code class="docutils literal"><span class="pre">&#64;author</span></code></p>
+</li>
+<li><p class="first">Umklammere zusätzliche Paragraphen mit <code class="docutils literal"><span class="pre">&lt;p&gt;</span></code> und <code class="docutils literal"><span class="pre">&lt;/p&gt;</span></code></p>
+</li>
+<li><p class="first">Schreibe das erste Zeichen in jeder Beschreibung. In der Regel <code class="docutils literal"><span class="pre">&#64;param</span> <span class="pre">name</span> <span class="pre">Player</span> <span class="pre">to</span> <span class="pre">affect</span></code>. Verwende keine Punkte</p>
+</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="code-conventions">
+<h2>Code Konventionen<a class="headerlink" href="#code-conventions" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p class="first">Verwende <span class="xref doc">/ Plugin/optional/Index</span> statt in der API Rückgabe <code class="docutils literal"><span class="pre">null</span></code></p>
+</li>
+<li><p class="first">Methoden die <code class="docutils literal"><span class="pre">null</span></code> akzeptieren müssen mit <code class="docutils literal"><span class="pre">&#64;Nullable</span></code> ( javax.*) kommentiert werden. Alle Methoden und Parameter sind normalerweise standardmäßig <code class="docutils literal"><span class="pre">&#64;Nunnull</span></code>.</p>
+</li>
+<li><p class="first">Verwende <a class="reference external" href="https://code.google.com/p/guava-libraries/wiki/PreconditionsExplained">Google Preconditions</a> um Argumente und &#8220;null&#8221; zu überprüfen.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="the-gist">
+<h2>Der Kern<a class="headerlink" href="#the-gist" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Obwohl wir empfehlen, dass du die Google Java Conventions gelesen hast, sind es trotzdem zwei sehr lange Dokumente. Damit du schneller beginnen kannst, haben wir dir hier ein Beispiel für die Formatierung angegeben:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * This file is part of Sponge, licensed under the MIT License (MIT).</span>
+<span class="cm"> *</span>
+<span class="cm"> * Copyright (c) SpongePowered.org &lt;http://www.spongepowered.org&gt;</span>
+<span class="cm"> * Copyright (c) contributors</span>
+<span class="cm"> *</span>
+<span class="cm"> * Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="cm"> * of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="cm"> * in the Software without restriction, including without limitation the rights</span>
+<span class="cm"> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="cm"> * copies of the Software, and to permit persons to whom the Software is</span>
+<span class="cm"> * furnished to do so, subject to the following conditions:</span>
+<span class="cm"> *</span>
+<span class="cm"> * The above copyright notice and this permission notice shall be included in</span>
+<span class="cm"> * all copies or substantial portions of the Software.</span>
+<span class="cm"> *</span>
+<span class="cm"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="cm"> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="cm"> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="cm"> * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="cm"> * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="cm"> * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN</span>
+<span class="cm"> * THE SOFTWARE.</span>
+<span class="cm"> */</span>
+<span class="kn">package</span> <span class="nn">com.example.java</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.slf4j.Logger</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.slf4j.LoggerFactory</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Optional</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">Example</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="o">();</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">id</span> <span class="o">=</span> <span class="s">&quot;test&quot;</span><span class="o">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Returns an identifier approximately half of the time.</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;A static instance of {@link Random} is used to calculate the</span>
+<span class="cm">     * outcome with a 50% chance.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * @return The ID, if available</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">resolveId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&quot;ID requested&quot;</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">random</span><span class="o">.</span><span class="na">nextBoolean</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">id</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">Optional</span><span class="o">.</span><span class="na">empty</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Returns an identifier approximately half of the time.</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;A static instance of {@link Random} is used to calculate the</span>
+<span class="cm">     * outcome with a 50% chance. If the outcome is to not return the ID,</span>
+<span class="cm">     * the given fallback ID is returned.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param fallback A fallback name to return</span>
+<span class="cm">     * @return The ID half of the time, the given fallback the other half</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">resolveId</span><span class="o">(</span><span class="n">String</span> <span class="n">fallback</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">resolveId</span><span class="o">().</span><span class="na">orElse</span><span class="o">(</span><span class="n">fallback</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+                </div>
+              </div>
+            </div>
+          <div class="clearer"></div>
+        </div>
+        <div class="footer" role="contentinfo">
+              &copy; Copyright 2014-2016, Sponge Contributors.
+            Mit <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1 erstellt.
+        </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+     <title>Versioning System and Repository Branch Layout &mdash; Sponge 5.0.0 Dokumentation</title>
+    
+  <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sponge.css" type="text/css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Roboto:400italic,700italic,700,400|Montserrat:400,700" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="../_static/tomorrow.css" type="text/css" />
+  <link id="syntax-highlighting-ref" rel="stylesheet" href="../_static/tomorrow_night.css" type="text/css" />
+      
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    '../',
+      VERSION:     '5.0.0',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/store.min.js"></script>
+    <script type="text/javascript" src="../_static/lights.js"></script>
+      <link rel="shortcut icon" href="../_static/favicon.ico"/>
+        <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+        <link rel="search" title="Suche" href="../search.html" />
+        <link rel="top" title="Sponge 5.0.0 Dokumentation" href="../index.html" />
+        <link rel="up" title="Zu Sponge beitragen" href="index.html" />
+        <link rel="next" title="Über das Sponge Projekt" href="../about/index.html" />
+        <link rel="prev" title="Portierung von Sponge auf andere Platformen" href="porting.html" />
+    
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-59476017-2', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+    
+  <link rel="alternate" hreflang="da" href="/master/da/">
+  <link rel="alternate" hreflang="de" href="/master/de/">
+  <link rel="alternate" hreflang="en-GB" href="/master/en-GB/">
+  <link rel="alternate" hreflang="en-PT" href="/master/en-PT/">
+  <link rel="alternate" hreflang="en" href="/master/en/">
+  <link rel="alternate" hreflang="es-ES" href="/master/es-ES/">
+  <link rel="alternate" hreflang="fi" href="/master/fi/">
+  <link rel="alternate" hreflang="fr" href="/master/fr/">
+  <link rel="alternate" hreflang="it" href="/master/it/">
+  <link rel="alternate" hreflang="ja" href="/master/ja/">
+  <link rel="alternate" hreflang="ko" href="/master/ko/">
+  <link rel="alternate" hreflang="lt" href="/master/lt/">
+  <link rel="alternate" hreflang="nb" href="/master/nb/">
+  <link rel="alternate" hreflang="nl" href="/master/nl/">
+  <link rel="alternate" hreflang="pl" href="/master/pl/">
+  <link rel="alternate" hreflang="pt-BR" href="/master/pt-BR/">
+  <link rel="alternate" hreflang="pt-PT" href="/master/pt-PT/">
+  <link rel="alternate" hreflang="ru" href="/master/ru/">
+  <link rel="alternate" hreflang="uk" href="/master/uk/">
+  <link rel="alternate" hreflang="zh-CN" href="/master/zh-CN/">
+  <link rel="alternate" hreflang="zh-TW" href="/master/zh-TW/">
+  <link rel="alternate" hreflang="x-default" href="/"> 
+  </head>
+  <body role="document" id="top">
+    <div class="topbar">
+  <div role="navigation" aria-label="related navigation">
+    <div class="sp-logo-container sp-not-mobileview sp-mobileview">
+      <a class="sp-logo-link" data-auto-route="true" href="/">
+        <img height="40px" id="site-logo" class="logo-big" alt="" src="https://www.spongepowered.org/assets/img/icons/spongie-mark.svg">
+        <span id="sp-site-title">Sponge</span>
+      </a>
+      <div class="sp-logo-bg"></div>
+      <div class="sp-logo-chevron"><i class="fa fa-fw fa-chevron-down"></i></div>
+      <div class="sp-logo-menu sp-skip-handler">
+        <ul class="sp-logo-dropdown" id="ddleft">
+          <a href="https://www.spongepowered.org"><li><i class="fa-fw fa fa-home"></i>Homepage</li></a>
+          <a href="https://forums.spongepowered.org"><li><i class="fa-fw fa fa-comments"></i>Forums</li></a>
+          <a href="https://github.com/SpongePowered"><li><i class="fa-fw fa fa-code"></i>Code</li></a>
+          <a class="sp-forums-home" href="https://docs.spongepowered.org"><li class="active"><i class="fa-fw fa fa-book"></i>Docs</li></a>
+          <a href="https://jd.spongepowered.org"><li><i class="fa-fw fa fa-graduation-cap"></i>Javadocs</li></a>
+          <a href="https://forums.spongepowered.org/c/plugins/plugin-releases"><li><i class="fa-fw fa fa-plug"></i>Plugins</li></a>
+          <a href="https://www.spongepowered.org/downloads"><li><i class="fa-fw fa fa-download"></i>Downloads</li></a>
+          <a href="https://www.spongepowered.org/chat"><li><i class="fa-fw fa fa-comment"></i>Chat</li></a>
+        </ul>
+      </div>
+    </div>
+    <div class="menu-right">
+      <div><i class="fa fa-fw fa-globe"></i></div>
+        <ul class="dropdown" id="ddlang">
+          <li><a href="/master/da/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/da.png" alt="Flag for Danish"/></a></li>
+          <li><a href="/master/de/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/de.png" alt="Flag for German"/></a></li>
+          <li><a href="/master/en-GB/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/en-GB.png" alt="Flag for English, United Kingdom"/></a></li>
+          <li><a href="/master/en-PT/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/en-PT.png" alt="Flag for Pirate English"/></a></li>
+          <li><a href="/master/en/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/en.png" alt="Flag for English"/></a></li>
+          <li><a href="/master/es-ES/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/es-ES.png" alt="Flag for Spanish"/></a></li>
+          <li><a href="/master/fi/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/fi.png" alt="Flag for Finnish"/></a></li>
+          <li><a href="/master/fr/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/fr.png" alt="Flag for French"/></a></li>
+          <li><a href="/master/it/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/it.png" alt="Flag for Italian"/></a></li>
+          <li><a href="/master/ja/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/ja.png" alt="Flag for Japanese"/></a></li>
+          <li><a href="/master/ko/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/ko.png" alt="Flag for Korean"/></a></li>
+          <li><a href="/master/lt/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/lt.png" alt="Flag for Lithuanian"/></a></li>
+          <li><a href="/master/nb/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/nb.png" alt="Flag for Norwegian Bokmal"/></a></li>
+          <li><a href="/master/nl/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/nl.png" alt="Flag for Dutch"/></a></li>
+          <li><a href="/master/pl/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/pl.png" alt="Flag for Polish"/></a></li>
+          <li><a href="/master/pt-BR/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/pt-BR.png" alt="Flag for Portuguese, Brazilian"/></a></li>
+          <li><a href="/master/pt-PT/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/pt-PT.png" alt="Flag for Portuguese"/></a></li>
+          <li><a href="/master/ru/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/ru.png" alt="Flag for Russian"/></a></li>
+          <li><a href="/master/uk/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/uk.png" alt="Flag for Ukrainian"/></a></li>
+          <li><a href="/master/zh-CN/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/zh-CN.png" alt="Flag for Chinese Simplified"/></a></li>
+          <li><a href="/master/zh-TW/" class="lang"><img src="//d1ztvzf22lmr1j.cloudfront.net/images/flags/zh-TW.png" alt="Flag for Chinese Traditional"/></a></li>
+        </ul>
+    </div>
+    <div class="menu-right">
+      <div><i class="fa fa-fw fa-tag"></i><a>5.0.0</a></div>
+        <ul class="dropdown" id="ddvers">
+          <li><a href="/master/en/"><i class="fa fa-fw fa-tag"></i> latest</a></li>
+          <li><a href="/4.1.0/en/"><i class="fa fa-fw fa-tag"></i> 4.1.0</a></li>
+          <li><a href="/3.1.0/en/"><i class="fa fa-fw fa-tag"></i> 3.1.0</a></li>
+        </ul>
+    </div>
+    <div class="menu-right">
+      <div title="Toggle syntax highlighting between light and dark" class="lights">
+        <i class="fa fa-fw fa-lightbulb-o"></i>
+      </div>
+    </div>
+    <div>
+      <ul class="controls">
+        <li>|</li>
+        
+        <li><a href="../about/index.html" title="Next Page"><i class="fa fa-fw fa-chevron-right"></i></a></li>
+        
+        <li><a href="#top" title="To the top"><i class="fa fa-fw fa-chevron-up"></i></a></li>
+        <li><a href="../index.html" title="Home"><i class="fa fa-fw fa-home"></i></a></li>
+        
+        <li><a href="porting.html" title="Previous Page"><i class="fa fa-fw fa-chevron-left"></i></a></li>
+        
+        <li>|</li>
+        
+          <li><a href="https://github.com/SpongePowered/SpongeDocs/blob/master/source/contributing/versioning.rst" title="Edit on GitHub"><i class="fa fa-fw fa-github"></i></a></li>
+        
+      </ul>
+    </div>
+    <h3>Navigation</h3>
+  </div>
+    </div>
+    <div class="container">
+
+      <div class="breadcrumbs">
+        <ul>
+        <li><a href="../index.html">Sponge 5.0.0 Dokumentation</a><i class="fa fa-fw fa-chevron-right"></i></li>
+        <li><a href="index.html" accesskey="U">Zu Sponge beitragen</a><i class="fa fa-fw fa-chevron-right"></i></li>
+        </ul>
+      </div> 
+    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+    <form class="search" action="../search.html" method="get">
+      <div class="searchbox-inner">
+        <input class="field" type="text" name="q" autocomplete="off" />
+        <button class="submit" type="submit"><i class="fa fa-fw fa-search" aria-hidden="true"></i></button>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </div>
+    </form>
+    <p class="searchtip" style="font-size: 90%"></p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3><a href="../index.html">Inhalt</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../server/index.html">Einen Server erstellen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../server/getting-started/index.html">Erste Schritte</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../server/getting-started/jre.html">Java installieren</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server/getting-started/migrating.html">Auf Sponge umsteigen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server/getting-started/implementations/index.html">Auswählen einer Implementierung</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../server/getting-started/implementations/spongeforge.html">SpongeForge installieren</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../server/getting-started/implementations/spongevanilla.html">SpongeVanilla Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../server/getting-started/launch-script.html">Ein Start-Skript erstellen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server/getting-started/port-forward.html">Portweiterleitung</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server/getting-started/bungeecord.html">Sponge mit Bungeecord nutzen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server/getting-started/configuration/index.html">Sponge konfigurieren</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../server/getting-started/configuration/hocon.html">Einführung in HOCON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../server/getting-started/configuration/json.html">JSON Syntax</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../server/getting-started/configuration/sponge-conf.html">global.conf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../server/getting-started/configuration/server-properties.html">server.properties</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../server/management/index.html">Server Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../server/management/whitelist.html">Verwalten der Whitelist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server/management/bans.html">Verwalten von Bans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server/management/permissions.html">Berechtigungen verwalten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server/management/plugins.html">Installieren von Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server/management/exploit-patches.html">Exploit Patches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server/management/performance-tweaks.html">Performance Tweaks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../server/spongineer/index.html">Ein Sponge Experte werden</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../server/spongineer/commands.html">Befehle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server/spongineer/troubleshooting.html">Fehlerbehebung</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server/spongineer/logs.html">Logdateien</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server/spongineer/debugging.html">Debuggen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../server/spongineer/bugreport.html">Fehler melden</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../preparing/index.html">Vorbereitung für die Entwicklung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../preparing/jdk.html">Installieren des JDKs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparing/ide.html">Installieren einer IDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparing/text.html">Installation eines Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparing/git.html">Git installieren</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../plugin/index.html">Plugins erstellen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/buildsystem.html">Build Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/workspace/index.html">Den Arbeitsbereich einrichten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/workspace/idea.html">IntelliJ IDEA einrichten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/workspace/eclipse.html">Eclipse einrichten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/project/index.html">Das Projekt einrichten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/project/gradle.html">Grable einrichten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/project/maven.html">Maven einrichten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/plugin-identifier.html">Plugin Identifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/plugin-class.html">Main Plugin Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/lifecycle.html">Der Plugin-Lebenszyklus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/injection.html">Dependency Injection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/practices.html">Bewährtes Vorgehen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/optional/index.html">Extras</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/optional/basic.html">Optionals erklärt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/optional/usage.html">Beispiele für die Verwendung</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/logging.html">Loggen und Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/commands/index.html">Befehle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/commands/creating.html">Einen Befehl erstellen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/commands/arguments.html">Das Parsen von Argumenten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/commands/flags.html">Command Flags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/commands/childcommands.html">Untergeordnete Befehle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/commands/service.html">The Command Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/commands/commandcallable.html">Unterste Ebene der Command API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/event/index.html">Ereignisse</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/event/listeners.html">Event Listeners</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/event/causes.html">Event Causes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/event/filters.html">Event Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/event/custom.html">Benutzerdefinierte Ereignisse</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/assets.html">The Asset API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/configuration/index.html">Configuring Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/configuration/loaders.html">Konfigurationsladende Elemente</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/configuration/nodes.html">Nodes konfigurieren</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/configuration/serialization.html">Serializing Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/text/index.html">Text</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/text/text.html">Texte erstellen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/text/representations/index.html">Text Serializers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../plugin/text/representations/formatting-code-legacy.html">Formatting Code &amp; Legacy Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugin/text/representations/xml.html">TextXML Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugin/text/representations/json.html">JSON Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plugin/text/representations/configurate.html">Konfiguration-Format</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/text/pagination.html">Der Pagination-Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/text/messagechannels.html">Message Channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/text/templates.html">TextTemplates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/data/index.html">Die Daten API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/data/keys.html">Using Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/data/datamanipulators.html">Daten-Manipulatoren</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/data/transactions.html">Transactions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/data/serialization.html">Serializing Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/blocks/index.html">Blöcke</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/blocks/concepts.html">Konzept</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/blocks/accessing.html">Block-Zugriff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/blocks/modifying.html">Blöcke verändern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/blocks/tileentities.html">Tile Entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/blocks/virtualblock.html">Virtual Block Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/entities/index.html">Entitäten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/entities/spawning.html">Spawnen eines Entitys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/entities/modifying.html">Modifying an Entity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/items/index.html">Items</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/items/usage.html">Basic Item Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/items/creating.html">Ein ItemStack erstellen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/trade-offers.html">Trade-Offers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/effects.html">Effekte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/scheduler.html">Scheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/services.html">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/database.html">Datenbanken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/permissions.html">Rechte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/bans.html">Bans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/bookview.html">Book Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/economy/index.html">Wirtschaft</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/economy/basics.html">Grundlegende Konzepte</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/economy/using.html">Using the Economy API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/economy/practices.html">Economy API Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/economy/implementing.html">Implementing the Economy API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/wgen/index.html">Weltgenerierung</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/wgen/modifiers.html">WorldGeneratorModifiers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugin/wgen/customwgen.html">Modifying World Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/manager.html">Plugin-Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/game-profile-manager.html">Game Profile Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/offline-userplayer-data.html">Offline Player Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/debugging.html">Plugins Debuggen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/tab-lists.html">Tab Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/plugin-meta.html">Plugin Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/ray-tracing.html">Ray-Tracing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugin/tutorials.html">Tutorials</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Zu Sponge beitragen</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="guidelines.html">Richtlinien für Beiträge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howtogit.html">Wie man Git(Hub)t</a></li>
+<li class="toctree-l2"><a class="reference internal" href="implementation/index.html">Developing Sponge</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="implementation/codestyle.html">Code Formatierung</a></li>
+<li class="toctree-l3"><a class="reference internal" href="implementation/git-implementation.html">Git Workflow for API and Implementations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="implementation/pr.html">Submitting a Pull-Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="implementation/debugging.html">Sponge in der IDE debuggen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="implementation/mixins.html">Mixins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="implementation/datamanipulator.html">Implementierung des DataManipulators</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spongedocs.html">SpongeDocs schreiben</a></li>
+<li class="toctree-l2"><a class="reference internal" href="porting.html">Portierung von Sponge auf andere Platformen</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Versioning System and Repository Branch Layout</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Über das Sponge Projekt</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../about/introduction.html">Einführung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/faq.html">Häufig gestellte Fragen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/structure.html">Die Struktur des Sponge Projekts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/future.html">Zukunftspläne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/license.html">Lizenz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/posting.html">Richtlinien für Forenbeiträge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/rules.html">Regeln für das Forum und den IRC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/staff.html">Mitarbeiter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/glossary.html">Sponge Glossar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/assets.html">Grafiken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/history.html">Die Geschichte des Sponge-Projekts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../downloads.html">Download</a></li>
+</ul>
+
+      </div>
+    </div> 
+
+        <div class="document">
+            <div class="documentwrapper">
+              <div class="bodywrapper">
+                <div class="body" role="main">
+                  
+  <div class="section" id="versioning-system-and-repository-branch-layout">
+<h1>Versioning System and Repository Branch Layout<a class="headerlink" href="#versioning-system-and-repository-branch-layout" title="Link zu dieser Überschrift">¶</a></h1>
+<p>With the release for beta we&#8217;ve moved the SpongeAPI versioning to semantic versioning (see <a class="reference external" href="http://semver.org/">http://semver.org/</a>).
+This change means that every time that we make a release we have to increment the version according to the rules
+of semver.</p>
+<div class="section" id="semver">
+<h2>SemVer<a class="headerlink" href="#semver" title="Link zu dieser Überschrift">¶</a></h2>
+<p>SemVer uses the scheme <code class="docutils literal"><span class="pre">X.Y.Z</span></code>, where <code class="docutils literal"><span class="pre">X</span></code> is a <em>major</em> version, <code class="docutils literal"><span class="pre">Y</span></code> is a <em>minor</em> one and <code class="docutils literal"><span class="pre">Z</span></code> finally is a
+<em>patch</em> version.
+A release containing changes which are not backwards-compatible must be one <em>major</em> version ahead of the previous
+release. If there are only new features that are still backwards compatible, then the new release will be one <em>minor</em>
+version ahead of the previous release, and if the release strictly contains bugfixes then only the <em>patch</em> version will
+be incremented.</p>
+<p>This means that for example <code class="docutils literal"><span class="pre">3.2.0</span></code> is fully compatible to <code class="docutils literal"><span class="pre">3.0.0</span></code> while <code class="docutils literal"><span class="pre">4.0.0</span></code> isn&#8217;t binary compatible to
+<code class="docutils literal"><span class="pre">3.0.0</span></code>. <code class="docutils literal"><span class="pre">3.1.0</span></code> and <code class="docutils literal"><span class="pre">3.1.2</span></code> are fully interchangeable besides the bugs that were fixed.</p>
+<p>The layout of our branches (described below) is designed to assist this process by allowing us to make minor releases
+without a breaking change forcing us to make it a major release. This branch layout applies to the SpongeAPI,
+SpongeCommon, SpongeForge, and SpongeVanilla repositories but not to the SpongeDocs.</p>
+</div>
+<div class="section" id="spongeapi-spongecommon-spongeforge-and-spongevanilla">
+<h2>SpongeAPI, SpongeCommon, SpongeForge and SpongeVanilla<a class="headerlink" href="#spongeapi-spongecommon-spongeforge-and-spongevanilla" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="the-bleeding-branch">
+<h3>The Bleeding Branch<a class="headerlink" href="#the-bleeding-branch" title="Link zu dieser Überschrift">¶</a></h3>
+<p>The core of our repositories is the <code class="docutils literal"><span class="pre">bleeding</span></code> branch. Almost all changes will be added to <code class="docutils literal"><span class="pre">bleeding</span></code>, including
+new features, changes, and bugfixes. The version of <code class="docutils literal"><span class="pre">bleeding</span></code> will always be the next major release version
+appended with <code class="docutils literal"><span class="pre">-SNAPSHOT</span></code> (eg <code class="docutils literal"><span class="pre">6.0.0-SNAPSHOT</span></code>) to denote that it is not yet a final build and subject to change.</p>
+<p>The primary reason for having the <code class="docutils literal"><span class="pre">bleeding</span></code> branch is to have a testing ground for changes. Even experienced
+members of the Sponge team can accidentally cause a build to fail or miss a bug. The <code class="docutils literal"><span class="pre">bleeding</span></code> branch will be
+tested by people in the community that want the very latest, and it means that we can fix bugs that arise far more
+readily.</p>
+</div>
+<div class="section" id="stable-branches">
+<h3>Stable Branches<a class="headerlink" href="#stable-branches" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Stable branches represent a much more stable platform which plugins and server implementations can be built upon. There
+will be no breakages to API, only non-breaking additions. There is a branch named after each major API release, which
+contains the latest API/implementation for that release including any minor or patch releases.</p>
+<p>When the time comes to release a major version, a new <code class="docutils literal"><span class="pre">stable-x</span></code> branch will be created from <code class="docutils literal"><span class="pre">bleeding</span></code>, where
+<code class="docutils literal"><span class="pre">x</span></code> is the new major version - for example, <code class="docutils literal"><span class="pre">stable-5</span></code>. <code class="docutils literal"><span class="pre">bleeding</span></code> will be appropriately updated to be the next
+major release as described above.</p>
+<p>Changes that have been in <code class="docutils literal"><span class="pre">bleeding</span></code> for a while, which have no known bugs, and that can be applied to a previous
+major release will be cherry-picked to the relevant <code class="docutils literal"><span class="pre">stable</span></code> branch for future release. Changes will be grouped into
+a new minor version, unless an immediate fix is preferred in which case a bugfix version will be created instead. When
+a version is released, the API repository will have a tag created pointing to that release&#8217;s commit.</p>
+</div>
+<div class="section" id="feature-branches">
+<h3>Feature Branches<a class="headerlink" href="#feature-branches" title="Link zu dieser Überschrift">¶</a></h3>
+<p>New features or changes should be created in a <code class="docutils literal"><span class="pre">feature/foo</span></code> or <code class="docutils literal"><span class="pre">fix/bar</span></code> branch. This should be based on the most
+recent commit to <code class="docutils literal"><span class="pre">bleeding</span></code>. The only exception to this is if the changes are incompatible with the breaking changes
+in <code class="docutils literal"><span class="pre">bleeding</span></code>, in which case you should base against the relevant <code class="docutils literal"><span class="pre">stable-x</span></code>. You should state in your pull
+request why your change cannot be included in <code class="docutils literal"><span class="pre">bleeding</span></code> - such as fixing a bug in a feature that was removed by
+Mojang in a later release.</p>
+<p>If the changes made are not breaking for a previous release, the Sponge team may also cherry-pick the changes to one
+or more <code class="docutils literal"><span class="pre">stable</span></code> branches assuming that no problems arise after the change is merged into <code class="docutils literal"><span class="pre">bleeding</span></code>.</p>
+</div>
+</div>
+<div class="section" id="spongedocs">
+<h2>SpongeDocs<a class="headerlink" href="#spongedocs" title="Link zu dieser Überschrift">¶</a></h2>
+<p>The SpongeDocs themselves are unversioned following our philosophy that they will never be finished, but instead in a
+constant flux of ever increasing usability. However they <em>target</em> a specific version of the API, generally the most
+recent <em>release</em> of SpongeAPI.</p>
+<div class="section" id="core-branch">
+<h3>Core Branch<a class="headerlink" href="#core-branch" title="Link zu dieser Überschrift">¶</a></h3>
+<p>The core branch for the SpongeDocs is <code class="docutils literal"><span class="pre">master</span></code>. Each new commit to <code class="docutils literal"><span class="pre">master</span></code> triggers a rebuild of the <a class="reference external" href="https://docs.spongepowered.org/">docs website</a>. Commits to <code class="docutils literal"><span class="pre">master</span></code> are generally made to document the most current SpongeAPI
+release or to fix minor mistakes on the Docs.</p>
+</div>
+<div class="section" id="id1">
+<h3>Feature Branches<a class="headerlink" href="#id1" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Whenever a new feature is described, older texts are updated or reworded or the documents are restructured, it is done
+in a <code class="docutils literal"><span class="pre">feature/foo</span></code> or <code class="docutils literal"><span class="pre">fix/bar</span></code> branch. Those branches will then be reviewed and, once they are deemed complete,
+may be merged.</p>
+<p>A feature branch may only be merged into master if the changes / additions made in it are correct regarding the
+<strong>SpongeAPI release currently targeted by the SpongeDocs</strong>. Any feature branches that describe features not yet included
+in a release stay unmerged until the corresponding API version is released and becomes the new targeted version for the
+SpongeDocs. However the Docs team might collect additions for a specific version on a single branch.</p>
+<img alt="release branch example" src="../_images/versioning-release-branch.svg" /></div>
+<div class="section" id="release-branches">
+<h3>Release Branches<a class="headerlink" href="#release-branches" title="Link zu dieser Überschrift">¶</a></h3>
+<p>SpongeDocs uses <code class="docutils literal"><span class="pre">release/x.y.z</span></code> branches to publish Docs for older API versions like API <code class="docutils literal"><span class="pre">3.1.0</span></code>. Older API releases
+are available on their respective branches. Whenever a new API version is released, the Docs Staff will create a new
+<code class="docutils literal"><span class="pre">release/x.y.z</span></code> branch and bump master to the new API version afterwards. A commit to a <code class="docutils literal"><span class="pre">release</span></code> branch also
+triggers a rebuild of the older Docs release, just like on the core branch.</p>
+</div>
+</div>
+</div>
+
+
+                </div>
+              </div>
+            </div>
+          <div class="clearer"></div>
+        </div>
+        <div class="footer" role="contentinfo">
+              &copy; Copyright 2014-2016, Sponge Contributors.
+            Mit <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1 erstellt.
+        </div>
+    </div>
+  </body>
+</html>
